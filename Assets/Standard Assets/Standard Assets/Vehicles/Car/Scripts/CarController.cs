@@ -50,6 +50,7 @@ namespace UnityStandardAssets.Vehicles.Car
 
         public bool Skidding { get; private set; }
         public float BrakeInput { get; private set; }
+        public float HandBrakeInput { get; private set; }
         public float CurrentSteerAngle { get { return m_SteerAngle; } }
         public float CurrentSpeed { get { return m_Rigidbody.velocity.magnitude * 2.23693629f; } }
         public float MaxSpeed { get { return m_Topspeed; } }
@@ -72,7 +73,6 @@ namespace UnityStandardAssets.Vehicles.Car
             m_CurrentTorque = m_FullTorqueOverAllWheels - (m_TractionControl * m_FullTorqueOverAllWheels);
         }
 
-
         private void GearChanging()
         {
             float f = Mathf.Abs(CurrentSpeed / MaxSpeed);
@@ -90,20 +90,17 @@ namespace UnityStandardAssets.Vehicles.Car
             }
         }
 
-
         // simple function to add a curved bias towards 1 for a value in the 0-1 range
         private static float CurveFactor(float factor)
         {
             return 1 - (1 - factor) * (1 - factor);
         }
 
-
         // unclamped version of Lerp, to allow value to exceed the from-to range
         private static float ULerp(float from, float to, float value)
         {
             return (1.0f - value) * from + value * to;
         }
-
 
         private void CalculateGearFactor()
         {
@@ -113,7 +110,6 @@ namespace UnityStandardAssets.Vehicles.Car
             var targetGearFactor = Mathf.InverseLerp(f * m_GearNum, f * (m_GearNum + 1), Mathf.Abs(CurrentSpeed / MaxSpeed));
             m_GearFactor = Mathf.Lerp(m_GearFactor, targetGearFactor, Time.deltaTime * 5f);
         }
-
 
         private void CalculateRevs()
         {
@@ -125,7 +121,6 @@ namespace UnityStandardAssets.Vehicles.Car
             var revsRangeMax = ULerp(m_RevRangeBoundary, 1f, gearNumFactor);
             Revs = ULerp(revsRangeMin, revsRangeMax, m_GearFactor);
         }
-
 
         public void Move(float steering, float accel, float footbrake, float handbrake)
         {
@@ -140,7 +135,7 @@ namespace UnityStandardAssets.Vehicles.Car
             steering = Mathf.Clamp(steering, -1, 1);
             AccelInput = accel = Mathf.Clamp(accel, 0, 1);
             BrakeInput = footbrake = -1 * Mathf.Clamp(footbrake, -1, 0);
-            handbrake = Mathf.Clamp(handbrake, 0, 1);
+            HandBrakeInput = handbrake = Mathf.Clamp(handbrake, 0, 1);
 
             //Set the steer on the front wheels.
             //Assuming that wheels 0 and 1 are the front wheels.
@@ -161,7 +156,6 @@ namespace UnityStandardAssets.Vehicles.Car
                 m_WheelColliders[3].brakeTorque = hbTorque;
             }
 
-
             CalculateRevs();
             GearChanging();
 
@@ -169,7 +163,6 @@ namespace UnityStandardAssets.Vehicles.Car
             CheckForWheelSpin();
             TractionControl();
         }
-
 
         private void CapSpeed()
         {
@@ -191,10 +184,8 @@ namespace UnityStandardAssets.Vehicles.Car
             }
         }
 
-
         private void ApplyDrive(float accel, float footbrake)
         {
-
             float thrustTorque;
             switch (m_CarDriveType)
             {
@@ -215,7 +206,6 @@ namespace UnityStandardAssets.Vehicles.Car
                     thrustTorque = accel * (m_CurrentTorque / 2f);
                     m_WheelColliders[2].motorTorque = m_WheelColliders[3].motorTorque = thrustTorque;
                     break;
-
             }
 
             for (int i = 0; i < 4; i++)
@@ -231,7 +221,6 @@ namespace UnityStandardAssets.Vehicles.Car
                 }
             }
         }
-
 
         private void SteerHelper()
         {
@@ -253,14 +242,12 @@ namespace UnityStandardAssets.Vehicles.Car
             m_OldRotation = transform.eulerAngles.y;
         }
 
-
         // this is used to add more grip in relation to speed
         private void AddDownForce()
         {
-            m_WheelColliders[0].attachedRigidbody.AddForce(-transform.up * m_Downforce *
-                                                         m_WheelColliders[0].attachedRigidbody.velocity.magnitude);
+            m_WheelColliders[0].attachedRigidbody
+                .AddForce(-transform.up * m_Downforce * m_WheelColliders[0].attachedRigidbody.velocity.magnitude);
         }
-
 
         // checks if the wheels are spinning and is so does three things
         // 1) emits particles
@@ -333,7 +320,6 @@ namespace UnityStandardAssets.Vehicles.Car
             }
         }
 
-
         private void AdjustTorque(float forwardSlip)
         {
             if (forwardSlip >= m_SlipLimit && m_CurrentTorque >= 0)
@@ -349,7 +335,6 @@ namespace UnityStandardAssets.Vehicles.Car
                 }
             }
         }
-
 
         private bool AnySkidSoundPlaying()
         {
