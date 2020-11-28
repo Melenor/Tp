@@ -37,21 +37,19 @@ namespace UnityStandardAssets.Vehicles.Car
         [SerializeField] private float m_RevRangeBoundary = 1f;
         [SerializeField] private float m_SlipLimit;
         [SerializeField] private float m_BrakeTorque;
-
-        private Quaternion[] m_WheelMeshLocalRotations;
-        private Vector3 m_Prevpos, m_Pos;
-        private float m_SteerAngle;
         private int m_GearNum;
         private float m_GearFactor;
         private float m_OldRotation;
         private float m_CurrentTorque;
         private Rigidbody m_Rigidbody;
         private const float k_ReversingThreshold = 0.01f;
+        private const float rotationFactor = 25f;
+        private float xRotationCorrection = -90;
 
         public bool Skidding { get; private set; }
         public float BrakeInput { get; private set; }
         public float HandBrakeInput { get; private set; }
-        public float CurrentSteerAngle { get { return m_SteerAngle; } }
+        public float CurrentSteerAngle { get; private set; }
         public float CurrentSpeed { get { return m_Rigidbody.velocity.magnitude * 2.23693629f; } }
         public float MaxSpeed { get { return m_Topspeed; } }
         public float Revs { get; private set; }
@@ -60,11 +58,6 @@ namespace UnityStandardAssets.Vehicles.Car
         // Use this for initialization
         private void Start()
         {
-            m_WheelMeshLocalRotations = new Quaternion[4];
-            for (int i = 0; i < 4; i++)
-            {
-                m_WheelMeshLocalRotations[i] = m_WheelMeshes[i].transform.localRotation;
-            }
             m_WheelColliders[0].attachedRigidbody.centerOfMass = m_CentreOfMassOffset;
 
             m_MaxHandbrakeTorque = float.MaxValue;
@@ -124,6 +117,7 @@ namespace UnityStandardAssets.Vehicles.Car
 
         public void Move(float steering, float accel, float footbrake, float handbrake)
         {
+
             for (int i = 0; i < 4; i++)
             {
                 m_WheelColliders[i].GetWorldPose(out Vector3 position, out _);
@@ -139,9 +133,9 @@ namespace UnityStandardAssets.Vehicles.Car
 
             //Set the steer on the front wheels.
             //Assuming that wheels 0 and 1 are the front wheels.
-            m_SteerAngle = steering * m_MaximumSteerAngle;
-            m_WheelColliders[0].steerAngle = m_SteerAngle;
-            m_WheelColliders[1].steerAngle = m_SteerAngle;
+            CurrentSteerAngle = steering * m_MaximumSteerAngle;
+            m_WheelColliders[0].steerAngle = CurrentSteerAngle;
+            m_WheelColliders[1].steerAngle = CurrentSteerAngle;
 
             SteerHelper();
             ApplyDrive(accel, footbrake);
@@ -162,6 +156,12 @@ namespace UnityStandardAssets.Vehicles.Car
             AddDownForce();
             CheckForWheelSpin();
             TractionControl();
+            RotateFrontWheels();
+        }
+
+        private void RotateFrontWheels()
+        {
+            m_WheelMeshes[0].transform.localRotation = m_WheelMeshes[1].transform.localRotation = Quaternion.Euler(xRotationCorrection, 0, CurrentSteerAngle);
         }
 
         private void CapSpeed()
@@ -186,27 +186,31 @@ namespace UnityStandardAssets.Vehicles.Car
 
         private void ApplyDrive(float accel, float footbrake)
         {
-            float thrustTorque;
-            switch (m_CarDriveType)
+            float thrustTorque = accel * (m_CurrentTorque / 4f);
+            for (int i = 0; i < 4; i++)
             {
-                case CarDriveType.FourWheelDrive:
-                    thrustTorque = accel * (m_CurrentTorque / 4f);
-                    for (int i = 0; i < 4; i++)
-                    {
-                        m_WheelColliders[i].motorTorque = thrustTorque;
-                    }
-                    break;
-
-                case CarDriveType.FrontWheelDrive:
-                    thrustTorque = accel * (m_CurrentTorque / 2f);
-                    m_WheelColliders[0].motorTorque = m_WheelColliders[1].motorTorque = thrustTorque;
-                    break;
-
-                case CarDriveType.RearWheelDrive:
-                    thrustTorque = accel * (m_CurrentTorque / 2f);
-                    m_WheelColliders[2].motorTorque = m_WheelColliders[3].motorTorque = thrustTorque;
-                    break;
+                m_WheelColliders[i].motorTorque = thrustTorque;
             }
+            //switch (m_CarDriveType)
+            //{
+            //    case CarDriveType.FourWheelDrive:
+            //        thrustTorque = accel * (m_CurrentTorque / 4f);
+            //        for (int i = 0; i < 4; i++)
+            //        {
+            //            m_WheelColliders[i].motorTorque = thrustTorque;
+            //        }
+            //        break;
+
+            //    case CarDriveType.FrontWheelDrive:
+            //        thrustTorque = accel * (m_CurrentTorque / 2f);
+            //        m_WheelColliders[0].motorTorque = m_WheelColliders[1].motorTorque = thrustTorque;
+            //        break;
+
+            //    case CarDriveType.RearWheelDrive:
+            //        thrustTorque = accel * (m_CurrentTorque / 2f);
+            //        m_WheelColliders[2].motorTorque = m_WheelColliders[3].motorTorque = thrustTorque;
+            //        break;
+            //}
 
             for (int i = 0; i < 4; i++)
             {
