@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireBallerPouvoir : MonoBehaviour
+public class FireBallerPouvoir : MonoBehaviour, Pouvoir
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private GameObject projectile = default;
+    [SerializeField] private Transform positionCannon = default;
+    [SerializeField] private int forcePropulsion = 1000;
 
-    // Update is called once per frame
-    void Update()
+    public void UtiliserPouvoir()
     {
-        
+        GameObject copieProjectile = Instantiate(projectile);
+        copieProjectile.GetComponent<MeshRenderer>().enabled = true;
+        copieProjectile.transform.position = positionCannon.position + transform.forward;
+        copieProjectile.GetComponent<Rigidbody>().AddForce(transform.forward * forcePropulsion);
     }
 }

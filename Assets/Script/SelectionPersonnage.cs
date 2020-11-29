@@ -14,14 +14,16 @@ public class SelectionPersonnage : MonoBehaviour
     void Start()
     {
         GameObject joueur = GameObject.FindGameObjectWithTag(personnageChoisi.ToString());
+
+        // Active les composants pour le user.
         joueur.GetComponentInChildren<Camera>().enabled = true;
         joueur.GetComponent<CarUserControl>().enabled = true;
-        joueur.GetComponent<CarAIControl>().enabled = false;
-    }
+        joueur.GetComponent<UserPouvoir>().enabled = true;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // Désactive les composants AI.
+        joueur.GetComponent<CarAIControl>().enabled = false;
+        joueur.GetComponentInChildren<AIChampVision>().enabled = false;
+        joueur.GetComponentInChildren<ConeCollider>().enabled = false;
+        joueur.GetComponent<AIPouvoir>().enabled = false;
     }
 }
