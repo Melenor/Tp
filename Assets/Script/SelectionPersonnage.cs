@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 using UnityStandardAssets.Vehicles.Car;
 
 public class SelectionPersonnage : MonoBehaviour
 {
-    internal enum Personnage { Tanky, IcerMan, FireBaller, TheTrickster }
+    public enum Personnage { Tanky, IcerMan, FireBaller, TheTrickster }
 
     [SerializeField] private Personnage personnageChoisi = Personnage.Tanky;
 
-    // Start is called before the first frame update
     void Start()
     {
         GameObject joueur = GameObject.FindGameObjectWithTag(personnageChoisi.ToString());
@@ -26,4 +26,6 @@ public class SelectionPersonnage : MonoBehaviour
         joueur.GetComponentInChildren<ConeCollider>().enabled = false;
         joueur.GetComponent<AIPouvoir>().enabled = false;
     }
+
+    public static bool EstPersonnage(string tag) => Enum.GetNames(typeof(Personnage)).Contains(tag);
 }

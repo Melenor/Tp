@@ -11,11 +11,10 @@ public class AIChampVision : MonoBehaviour
         aIPouvoir = transform.parent.gameObject.GetComponent<AIPouvoir>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (isActiveAndEnabled)
         {
-            Debug.Log("Hello");
             aIPouvoir.OnChampVisionTriggerEnter(other);
         }
     }
