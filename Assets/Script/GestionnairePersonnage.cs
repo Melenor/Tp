@@ -5,9 +5,11 @@ using System;
 using System.Linq;
 using UnityStandardAssets.Vehicles.Car;
 
-public class SelectionPersonnage : MonoBehaviour
+public class GestionnairePersonnage : MonoBehaviour
 {
     public enum Personnage { Tanky, IcerMan, FireBaller, TheTrickster }
+
+    private static Personnage[] personnagesImmunise = new Personnage[] { Personnage.Tanky };
 
     [SerializeField] private Personnage personnageChoisi = Personnage.Tanky;
 
@@ -28,4 +30,6 @@ public class SelectionPersonnage : MonoBehaviour
     }
 
     public static bool EstPersonnage(string tag) => Enum.GetNames(typeof(Personnage)).Contains(tag);
+    public static bool EstPersonnageImmunise(string tag) => personnagesImmunise.Contains((Personnage)Enum.Parse(typeof(Personnage), tag));
+    public static bool EstPersonnageNonImmunise(string tag) => EstPersonnage(tag) && !EstPersonnageImmunise(tag);
 }

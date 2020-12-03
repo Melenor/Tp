@@ -6,9 +6,9 @@ public class BoulleFeu : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
-        if (SelectionPersonnage.EstPersonnage(collision.gameObject.tag))
+        if (GestionnairePersonnage.EstPersonnageNonImmunise(collision.gameObject.tag))
         {
-            Debug.Log("Collision avec un joueur.");
+            Debug.Log("Do something to " + collision.gameObject.tag);
         }
         Destroy(this);
     }

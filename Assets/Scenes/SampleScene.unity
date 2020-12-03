@@ -5093,7 +5093,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 32907875}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -5315,7 +5315,7 @@ GameObject:
   - component: {fileID: 65781458}
   - component: {fileID: 65781459}
   m_Layer: 0
-  m_Name: AI Champ Vision
+  m_Name: AI Champ Vision FireBaller
   m_TagString: ChampVision
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9212,10 +9212,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 431500447}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f312f39a00e8d8449dc2c9845a5e9d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ddebccd66b175a49930287e038600f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  personnageChoisi: 0
+  personnageChoisi: 3
 --- !u!1 &437672917
 GameObject:
   m_ObjectHideFlags: 0
@@ -24932,6 +24932,7 @@ GameObject:
   - component: {fileID: 1018945992}
   - component: {fileID: 1018945991}
   - component: {fileID: 1018945990}
+  - component: {fileID: 1018945997}
   m_Layer: 0
   m_Name: IcerMan
   m_TagString: IcerMan
@@ -25098,9 +25099,23 @@ Transform:
   - {fileID: 512470430}
   - {fileID: 2116159561}
   - {fileID: 24544016}
+  - {fileID: 1564734103}
   m_Father: {fileID: 431500448}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!65 &1018945997
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018945989}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.1623728, y: 1.485013, z: 3.673703}
+  m_Center: {x: 0.12175693, y: 0.7584731, z: 0.017111832}
 --- !u!1 &1038676509
 GameObject:
   m_ObjectHideFlags: 0
@@ -25601,9 +25616,10 @@ GameObject:
   - component: {fileID: 1062652086}
   - component: {fileID: 1062652085}
   - component: {fileID: 1062652084}
-  - component: {fileID: 1062652089}
   - component: {fileID: 1062652090}
   - component: {fileID: 1062652091}
+  - component: {fileID: 1062652089}
+  - component: {fileID: 1062652092}
   m_Layer: 0
   m_Name: FireBaller
   m_TagString: FireBaller
@@ -25773,7 +25789,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 14
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &1062652089
 MonoBehaviour:
@@ -25784,13 +25800,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1062652081}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77e4cb5eb19e9074f842071c684179de, type: 3}
+  m_Script: {fileID: 11500000, guid: 562edb58c713e4d46b29b6b6f37c487a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 743195406147980396, guid: 33d9c898c819c574eb0ae2de639cf6ab,
     type: 3}
   positionCannon: {fileID: 1235714309}
-  forcePropulsion: 2000
+  forcePropulsion: 1000
 --- !u!114 &1062652090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25815,6 +25831,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8b2b7ab49c99f443981a63b23be505e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &1062652092
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062652081}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.1623728, y: 1.485013, z: 3.673703}
+  m_Center: {x: 0.12175693, y: 0.7584731, z: 0.017111832}
 --- !u!1 &1068852854
 GameObject:
   m_ObjectHideFlags: 0
@@ -38608,6 +38637,66 @@ Transform:
   m_Father: {fileID: 1018945996}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1564734102
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1564734103}
+  - component: {fileID: 1564734105}
+  - component: {fileID: 1564734104}
+  m_Layer: 0
+  m_Name: AI Champ Vision IcerMan
+  m_TagString: ChampVision
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1564734103
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564734102}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.0757, y: 1.562, z: -0.2764}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1018945996}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1564734104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564734102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc1bc2e779cad2a4c82e29a9a7b39e78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1564734105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564734102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 544e52e7528d39543a55e8259cace9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_angle: 16.3
+  m_distance: 15
+  m_isTrigger: 1
+  m_isFixScale: 1
 --- !u!1 &1581370461
 GameObject:
   m_ObjectHideFlags: 0
@@ -39601,6 +39690,10 @@ GameObject:
   - component: {fileID: 1685892305}
   - component: {fileID: 1685892304}
   - component: {fileID: 1685892303}
+  - component: {fileID: 1685892309}
+  - component: {fileID: 1685892308}
+  - component: {fileID: 1685892310}
+  - component: {fileID: 1685892311}
   m_Layer: 0
   m_Name: TheTrickster
   m_TagString: TheTrickster
@@ -39626,6 +39719,8 @@ Transform:
   - {fileID: 1655754014}
   - {fileID: 796280771}
   - {fileID: 2142460976}
+  - {fileID: 1835770086}
+  - {fileID: 1910961558}
   m_Father: {fileID: 431500448}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -39770,6 +39865,58 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1685892308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1685892300}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd1d39ca26289bb47862b600c14f0c0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1685892309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1685892300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8b2b7ab49c99f443981a63b23be505e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1685892310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1685892300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 562edb58c713e4d46b29b6b6f37c487a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 193522, guid: 32ca794a6a194424a9c058c72f5f1eca, type: 3}
+  positionCannon: {fileID: 1835770086}
+  forcePropulsion: 50
+--- !u!65 &1685892311
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1685892300}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.1623728, y: 1.485013, z: 3.673703}
+  m_Center: {x: 0.12175693, y: 0.7584731, z: 0.017111832}
 --- !u!1 &1686161031
 GameObject:
   m_ObjectHideFlags: 0
@@ -41308,6 +41455,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1806241743}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1835770085
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1835770086}
+  m_Layer: 0
+  m_Name: PositionCannon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1835770086
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835770085}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0.097, y: 0.577, z: -2.568}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1685892301}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &1837481215
 GameObject:
   m_ObjectHideFlags: 0
@@ -46797,6 +46974,66 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1907564812}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1910961557
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1910961558}
+  - component: {fileID: 1910961560}
+  - component: {fileID: 1910961559}
+  m_Layer: 0
+  m_Name: AI Champ Vision TheTrickster
+  m_TagString: ChampVision
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1910961558
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910961557}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0.176, y: 1.414, z: -0.38}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1685892301}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &1910961559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910961557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc1bc2e779cad2a4c82e29a9a7b39e78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1910961560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910961557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 544e52e7528d39543a55e8259cace9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_angle: 16.3
+  m_distance: 15
+  m_isTrigger: 1
+  m_isFixScale: 1
 --- !u!1 &1916420091
 GameObject:
   m_ObjectHideFlags: 0
