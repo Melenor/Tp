@@ -11,6 +11,10 @@ TagManager:
   - TheTrickster
   - Projectile
   - ChampVision
+  - IcerManTextPoint
+  - TankyTextPoint
+  - FireBallerTextPoint
+  - TheTricksterTextPoint
   layers:
   - Default
   - TransparentFX
