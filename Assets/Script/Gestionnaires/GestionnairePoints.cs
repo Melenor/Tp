@@ -31,4 +31,6 @@ public class GestionnairePoints : MonoBehaviour
         GameObject.FindGameObjectWithTag($"{personnage}TextPoint")
             .GetComponent<Text>().text = $"{personnage}: {pointsPersonnages[personnage]}";
     }
+
+    public static int GetPoints(Personnage personnage) => pointsPersonnages[personnage];
 }

@@ -15,7 +15,7 @@ public class Coin : MonoBehaviour
             Destroy(gameObject);
 
             GestionnairePoints
-                .AddPoints((Personnage)Enum.Parse(typeof(Personnage), tag));   
+                .AddPoints(GetPersonnage(tag));   
         }
     }
 }

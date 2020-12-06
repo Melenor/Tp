@@ -30,6 +30,7 @@ public class GestionnairePersonnage : MonoBehaviour
     }
 
     public static bool EstPersonnage(string tag) => Enum.GetNames(typeof(Personnage)).Contains(tag);
-    public static bool EstPersonnageImmunise(string tag) => personnagesImmunise.Contains((Personnage)Enum.Parse(typeof(Personnage), tag));
+    public static bool EstPersonnageImmunise(string tag) => personnagesImmunise.Contains(GetPersonnage(tag));
     public static bool EstPersonnageNonImmunise(string tag) => EstPersonnage(tag) && !EstPersonnageImmunise(tag);
+    public static Personnage GetPersonnage(string tag) => (Personnage)Enum.Parse(typeof(Personnage), tag);
 }
