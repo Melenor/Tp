@@ -1,15 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using static GestionnairePersonnage;
 
 public class Mine : MonoBehaviour
 {
+    [SerializeField] private float forceExplosion = 500_000;
+    [SerializeField] private float rayon = 100;
+    [SerializeField] private float modificateur = 2;
+
     private void OnTriggerEnter(Collider other)
     {
-        if (GestionnairePersonnage.EstPersonnageNonImmunise(other.gameObject.tag))
+        if (EstPersonnageNonImmunise(other.gameObject.tag))
         {
-            Debug.Log("OnTriggerEnter Do something to " + other.gameObject.tag);
-            Destroy(this);
+            other.gameObject.GetComponent<PersonnageTouchable>().ToucheMine(forceExplosion, rayon, modificateur);
+            Destroy(gameObject);
         }
     }
 }

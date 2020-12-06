@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using static GestionnairePersonnage;
 
 [RequireComponent(typeof(Pouvoir))]
 public class AIPouvoir : MonoBehaviour
@@ -13,7 +14,7 @@ public class AIPouvoir : MonoBehaviour
 
     public void OnChampVisionTriggerEnter(Collider other)
     {
-        if (GestionnairePersonnage.EstPersonnage(other.tag))
+        if (EstPersonnage(other.tag))
         {
             pouvoir.UtiliserPouvoir();
         }

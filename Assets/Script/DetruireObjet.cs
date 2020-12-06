@@ -10,6 +10,6 @@ public class DetruireObjet : MonoBehaviour
     void Update()
     {
         if ((tempsDestruction -= Time.deltaTime) < 0)
-            Destroy(this.gameObject);
+            Destroy(gameObject);
     }
 }

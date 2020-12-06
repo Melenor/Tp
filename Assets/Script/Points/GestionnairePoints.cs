@@ -28,7 +28,6 @@ public class GestionnairePoints : MonoBehaviour
 
     private static void UpdateUIPointage(Personnage personnage)
     {
-        Debug.Log($"{personnage}: {pointsPersonnages[personnage]}");
         GameObject.FindGameObjectWithTag($"{personnage}TextPoint")
             .GetComponent<Text>().text = $"{personnage}: {pointsPersonnages[personnage]}";
     }
