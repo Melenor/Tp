@@ -65,6 +65,7 @@ namespace UnityStandardAssets.Vehicles.Car
 
             m_Rigidbody = GetComponent<Rigidbody>();
             m_CurrentTorque = m_FullTorqueOverAllWheels - (m_TractionControl * m_FullTorqueOverAllWheels);
+            m_Rigidbody.AddForce(transform.forward * 500_000);
         }
 
         private void GearChanging()
@@ -192,26 +193,6 @@ namespace UnityStandardAssets.Vehicles.Car
             {
                 m_WheelColliders[i].motorTorque = thrustTorque;
             }
-            //switch (m_CarDriveType)
-            //{
-            //    case CarDriveType.FourWheelDrive:
-            //        thrustTorque = accel * (m_CurrentTorque / 4f);
-            //        for (int i = 0; i < 4; i++)
-            //        {
-            //            m_WheelColliders[i].motorTorque = thrustTorque;
-            //        }
-            //        break;
-
-            //    case CarDriveType.FrontWheelDrive:
-            //        thrustTorque = accel * (m_CurrentTorque / 2f);
-            //        m_WheelColliders[0].motorTorque = m_WheelColliders[1].motorTorque = thrustTorque;
-            //        break;
-
-            //    case CarDriveType.RearWheelDrive:
-            //        thrustTorque = accel * (m_CurrentTorque / 2f);
-            //        m_WheelColliders[2].motorTorque = m_WheelColliders[3].motorTorque = thrustTorque;
-            //        break;
-            //}
 
             for (int i = 0; i < 4; i++)
             {
