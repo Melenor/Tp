@@ -11,7 +11,7 @@ public class GestionnairePersonnage : MonoBehaviour
 
     private static Personnage[] personnagesImmunise = new Personnage[] { Personnage.Tanky };
 
-    [SerializeField] private Personnage personnageChoisi = Personnage.Tanky;
+    public static Personnage personnageChoisi;
 
     void Start()
     {

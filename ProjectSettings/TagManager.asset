@@ -15,6 +15,14 @@ TagManager:
   - TankyTextPoint
   - FireBallerTextPoint
   - TheTricksterTextPoint
+  - point_0
+  - point_1
+  - point_2
+  - point_3
+  - image_0
+  - image_1
+  - image_2
+  - image_3
   layers:
   - Default
   - TransparentFX

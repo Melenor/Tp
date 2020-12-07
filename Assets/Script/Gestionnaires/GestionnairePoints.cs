@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 using static GestionnairePersonnage;
 
 public class GestionnairePoints : MonoBehaviour
@@ -33,4 +34,6 @@ public class GestionnairePoints : MonoBehaviour
     }
 
     public static int GetPoints(Personnage personnage) => pointsPersonnages[personnage];
+    public static List<KeyValuePair<Personnage, int>> GetListPointsOrdre()
+        => (from entry in pointsPersonnages orderby entry.Value descending select entry).ToList<KeyValuePair<Personnage, int>>();
 }
