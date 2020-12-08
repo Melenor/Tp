@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using static GestionnairePersonnage;
+using static GestionnairePoints;
 
 public class RayonGlacePouvoir : MonoBehaviour, Pouvoir
 {
     [SerializeField] private float portee = 10f;
-    [SerializeField] private float dureeGlace = 25f;
+    [SerializeField] private float dureeGlace = 12f;
     [SerializeField] private Transform positionCannon = default;
     [SerializeField] private LineRenderer rayonGlace;
     private float cooldown = 0f;
@@ -23,6 +22,7 @@ public class RayonGlacePouvoir : MonoBehaviour, Pouvoir
             bool touche = Physics.Raycast(positionCannon.transform.position, positionCannon.transform.forward, out infoRaycast, portee);
             if (touche && EstPersonnageNonImmunise(infoRaycast.transform.tag))
             {
+                AddPoints(Personnage.IcerMan);
                 infoRaycast.transform.gameObject.GetComponent<PersonnageTouchable>().ToucheGlace(dureeGlace);
                 copieRayon.SetPosition(1, infoRaycast.transform.position);
             }

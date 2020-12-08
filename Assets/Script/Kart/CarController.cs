@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 #pragma warning disable 649
@@ -55,6 +56,7 @@ namespace UnityStandardAssets.Vehicles.Car
         public float Revs { get; private set; }
         public float AccelInput { get; private set; }
         public float Steering { get => m_SteerHelper; set => m_SteerHelper = value; }
+        public MeshRenderer[] WheelMeshes { get => m_WheelMeshes.Select(m => m.GetComponent<MeshRenderer>()).ToArray(); }
 
         // Use this for initialization
         private void Start()

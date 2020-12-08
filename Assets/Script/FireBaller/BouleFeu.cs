@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using static GestionnairePersonnage;
+using static GestionnairePoints;
 
 public class BouleFeu : MonoBehaviour
 {
@@ -10,6 +9,7 @@ public class BouleFeu : MonoBehaviour
     {
         if (EstPersonnageNonImmunise(collision.gameObject.tag))
         {
+            AddPoints(Personnage.FireBaller);
             collision.gameObject.GetComponent<PersonnageTouchable>().ToucheFeu(-collision.impulse * forceImpact);
         }
         Destroy(gameObject);

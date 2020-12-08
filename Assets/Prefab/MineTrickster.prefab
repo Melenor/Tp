@@ -125,6 +125,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46a83412adda83a4d979e554b72ce4ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forceExplosion: 300000
+  rayon: 100
+  modificateur: 2
+  rotation: 2000
 --- !u!64 &6748863874670881161
 MeshCollider:
   m_ObjectHideFlags: 0

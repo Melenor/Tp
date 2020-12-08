@@ -15,7 +15,6 @@ public class Boost : MonoBehaviour
         if (EstPersonnage(tag))
         {
             other.gameObject.GetComponent<Rigidbody>().AddForce(other.transform.forward * boost, ForceMode.Acceleration);
-            Destroy(gameObject);
         }
     }
 }

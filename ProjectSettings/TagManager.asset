@@ -23,6 +23,7 @@ TagManager:
   - image_1
   - image_2
   - image_3
+  - Roue
   layers:
   - Default
   - TransparentFX
