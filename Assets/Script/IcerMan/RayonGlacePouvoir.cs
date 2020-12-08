@@ -4,7 +4,7 @@ using static GestionnairePoints;
 
 public class RayonGlacePouvoir : MonoBehaviour, Pouvoir
 {
-    [SerializeField] private float portee = 10f;
+    [SerializeField] private int portee = 40;
     [SerializeField] private float dureeGlace = 12f;
     [SerializeField] private Transform positionCannon = default;
     [SerializeField] private LineRenderer rayonGlace;
@@ -18,8 +18,7 @@ public class RayonGlacePouvoir : MonoBehaviour, Pouvoir
             LineRenderer copieRayon = Instantiate(rayonGlace);
             copieRayon.SetPosition(0, positionCannon.position);
 
-            RaycastHit infoRaycast;
-            bool touche = Physics.Raycast(positionCannon.transform.position, positionCannon.transform.forward, out infoRaycast, portee);
+            bool touche = Physics.Raycast(positionCannon.transform.position, positionCannon.transform.forward, out RaycastHit infoRaycast, portee);
             if (touche && EstPersonnageNonImmunise(infoRaycast.transform.tag))
             {
                 AddPoints(Personnage.IcerMan);

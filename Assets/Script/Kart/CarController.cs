@@ -251,7 +251,7 @@ namespace UnityStandardAssets.Vehicles.Car
                 m_WheelColliders[i].GetGroundHit(out wheelHit);
 
                 // is the tire slipping above the given threshhold
-                if (Mathf.Abs(wheelHit.forwardSlip) >= m_SlipLimit || Mathf.Abs(wheelHit.sidewaysSlip) >= m_SlipLimit)
+                if (Mathf.Abs(wheelHit.sidewaysSlip) >= m_SlipLimit)
                 {
                     m_WheelEffects[i].EmitTyreSmoke();
 

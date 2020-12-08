@@ -17,6 +17,8 @@ public class PersonnageTouchable : MonoBehaviour
     [SerializeField] private Material materielRoueGlace;
     [SerializeField] private ParticleSystem particulesFeu;
     [SerializeField] private float dureeFeu = 12f;
+    [SerializeField] private AudioSource audioSourceFeu;
+    [SerializeField] private AudioSource audioSourceGlace;
 
     private void Start()
     {
@@ -29,6 +31,7 @@ public class PersonnageTouchable : MonoBehaviour
 
     public void ToucheGlace(float duree)
     {
+        audioSourceGlace.PlayOneShot(audioSourceGlace.clip);
         dureeGlace = duree;
         cooldownGlace = Time.time;
         carController.Steering = 0.01f;
@@ -38,6 +41,7 @@ public class PersonnageTouchable : MonoBehaviour
 
     public void ToucheFeu(Vector3 force)
     {
+        audioSourceFeu.PlayOneShot(audioSourceFeu.clip);
         cooldownFeu = Time.time;
         if (!particulesFeu.isPlaying)
             particulesFeu.Play();

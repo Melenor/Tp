@@ -49,7 +49,6 @@ namespace UnityStandardAssets.Vehicles.Car
         private bool m_StartedSound; // flag for knowing if we have started sounds
         private CarController m_CarController; // Reference to car we are controlling
 
-
         private void StartSound()
         {
             // get the carcontroller ( this will not be null as we have require component)
@@ -70,7 +69,6 @@ namespace UnityStandardAssets.Vehicles.Car
             m_StartedSound = true;
         }
 
-
         private void StopSound()
         {
             //Destroy all audio sources on this object:
@@ -81,7 +79,6 @@ namespace UnityStandardAssets.Vehicles.Car
 
             m_StartedSound = false;
         }
-
 
         // Update is called once per frame
         private void Update()
@@ -127,7 +124,7 @@ namespace UnityStandardAssets.Vehicles.Car
                     m_HighDecel.pitch = pitch*highPitchMultiplier*pitchMultiplier;
 
                     // get values for fading the sounds based on the acceleration
-                    float accFade = Mathf.Abs(m_CarController.AccelInput);
+                    float accFade = Math.Max(0.5f, Mathf.Abs(m_CarController.AccelInput));
                     float decFade = 1 - accFade;
 
                     // get the high fade value based on the cars revs
@@ -155,7 +152,6 @@ namespace UnityStandardAssets.Vehicles.Car
             }
         }
 
-
         // sets up and adds new audio source to the gane object
         private AudioSource SetUpEngineAudioSource(AudioClip clip)
         {
@@ -164,6 +160,7 @@ namespace UnityStandardAssets.Vehicles.Car
             source.clip = clip;
             source.volume = 0;
             source.loop = true;
+            source.spatialBlend = 1;
 
             // start the clip from a random point
             source.time = Random.Range(0f, clip.length);

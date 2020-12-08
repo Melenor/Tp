@@ -14,9 +14,7 @@ public class AIPouvoir : MonoBehaviour
 
     public void OnChampVisionTriggerEnter(Collider other)
     {
-        if (EstPersonnage(other.tag))
-        {
+        if (EstPersonnageNonImmunise(other.tag))
             pouvoir.UtiliserPouvoir();
-        }
     }
 }

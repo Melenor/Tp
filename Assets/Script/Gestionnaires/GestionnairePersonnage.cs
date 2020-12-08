@@ -19,14 +19,17 @@ public class GestionnairePersonnage : MonoBehaviour
 
         // Active les composants pour le user.
         joueur.GetComponentInChildren<Camera>().enabled = true;
+        joueur.GetComponentInChildren<AudioListener>().enabled = true;
         joueur.GetComponent<CarUserControl>().enabled = true;
-        joueur.GetComponent<UserPouvoir>().enabled = true;
+        if (joueur.TryGetComponent(out UserPouvoir userPouvoir))
+            userPouvoir.enabled = true;
 
         // Désactive les composants AI.
         joueur.GetComponent<CarAIControl>().enabled = false;
         joueur.GetComponentInChildren<AIChampVision>().enabled = false;
         joueur.GetComponentInChildren<ConeCollider>().enabled = false;
-        joueur.GetComponent<AIPouvoir>().enabled = false;
+        if (joueur.TryGetComponent(out AIPouvoir aiPouvoir))
+            aiPouvoir.enabled = false;
     }
 
     public static bool EstPersonnage(string tag) => Enum.GetNames(typeof(Personnage)).Contains(tag);
